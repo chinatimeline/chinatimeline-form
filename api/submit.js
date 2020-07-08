@@ -63,7 +63,7 @@ module.exports = async (req, res) => {
     base: 'master'
   })
 
-  await new Promise(resolve => setTimeout(resolve, 1000))
+  await new Promise(resolve => setTimeout(resolve, 500))
 
   //res.setHeader('Location', `https://github.com/${REPOSITORY}/tree/${branchName}`)
   res.setHeader('Location', createdPr.data.html_url)
