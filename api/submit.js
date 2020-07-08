@@ -49,9 +49,7 @@ module.exports = async (req, res) => {
     branch: branchName,
     path: `_data/comments/${ymlFilename}`,
     message: `add ${ymlFilename}`,
-    content: base64,
-    committer: committer,
-    author: committer
+    content: base64
   })
 
   let createdPr = await octokit.pulls.create({
