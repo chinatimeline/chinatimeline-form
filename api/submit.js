@@ -43,19 +43,21 @@ module.exports = async (req, res) => {
     email: 'you@example.com'
   }
 
+  let prTitle = `添加新闻话题-${data.topic}-${data.title}`
+
   await octokit.repos.createOrUpdateFileContents({
     owner,
     repo,
     branch: branchName,
     path: `_data/comments/${ymlFilename}`,
-    message: `add ${ymlFilename}`,
+    message: prTitle,
     content: base64
   })
 
   let createdPr = await octokit.pulls.create({
     owner,
     repo,
-    title: ymlFilename,
+    title: prTitle,
     head: branchName,
     base: 'master'
   })
