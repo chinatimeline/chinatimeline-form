@@ -1,5 +1,6 @@
 import { Octokit } from '@octokit/rest'
 import YAML from 'yaml'
+import { v4 as uuidv4 } from 'uuid'
 
 let TOKEN = process.env.TOKEN
 let REPOSITORY = process.env.REPOSITORY
@@ -12,7 +13,7 @@ module.exports = async (req, res) => {
   console.log(params)
 
   let data = {
-    _id: 0,
+    _id: uuidv4(),
     topic: params['fields[topic]'],
     date: params['fields[date]'],
     title: params['fields[title]'],

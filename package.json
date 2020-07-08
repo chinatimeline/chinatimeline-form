@@ -18,6 +18,7 @@
   "homepage": "https://github.com/duty-machine/chinatimeline-form#readme",
   "dependencies": {
     "@octokit/rest": "^18.0.0",
+    "uuid": "^8.2.0",
     "yaml": "^1.10.0"
   }
 }
