@@ -1,5 +1,6 @@
 import { Octokit } from '@octokit/rest'
 import YAML from 'yaml'
+import { v4 as uuidv4 } from 'uuid'
 
 let TOKEN = process.env.TOKEN
 let REPOSITORY = process.env.REPOSITORY
@@ -12,7 +13,7 @@ module.exports = async (req, res) => {
   console.log(params)
 
   let data = {
-    _id: 0,
+    _id: uuidv4(),
     topic: params['fields[topic]'],
     date: params['fields[date]'],
     title: params['fields[title]'],
@@ -43,24 +44,26 @@ module.exports = async (req, res) => {
     email: 'you@example.com'
   }
 
+  let prTitle = `添加新闻话题-${data.topic}-${data.title}`
+
   await octokit.repos.createOrUpdateFileContents({
     owner,
     repo,
     branch: branchName,
     path: `_data/comments/${ymlFilename}`,
-    message: `add ${ymlFilename}`,
+    message: prTitle,
     content: base64
   })
 
   let createdPr = await octokit.pulls.create({
     owner,
     repo,
-    title: ymlFilename,
+    title: prTitle,
     head: branchName,
     base: 'master'
   })
 
-  await new Promise(resolve => setTimeout(resolve, 1000))
+  await new Promise(resolve => setTimeout(resolve, 500))
 
   //res.setHeader('Location', `https://github.com/${REPOSITORY}/tree/${branchName}`)
   res.setHeader('Location', createdPr.data.html_url)
