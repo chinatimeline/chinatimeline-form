@@ -44,7 +44,7 @@ module.exports = async (req, res) => {
     email: 'you@example.com'
   }
 
-  let prTitle = `添加新闻话题-${data.topic}-${data.title}`
+  let prTitle = `添加新闻事件-${data.topic}-${data.title}`
 
   await octokit.repos.createOrUpdateFileContents({
     owner,
