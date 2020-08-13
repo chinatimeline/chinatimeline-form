@@ -31,7 +31,7 @@ module.exports = async (req, res) => {
 
   let masterSha = masterRef.data.object.sha
 
-  let branchName = `tmp${+ new Date()}`
+  let branchName = 'master' #`tmp${+ new Date()}`
   await octokit.git.createRef({ owner, repo, ref: `refs/heads/${branchName}`, sha: masterSha})
 
   let ymlFilename = `${data.date}-entry${data.submitTime}.yml`
@@ -55,17 +55,17 @@ module.exports = async (req, res) => {
     content: base64
   })
 
-  let createdPr = await octokit.pulls.create({
-    owner,
-    repo,
-    title: prTitle,
-    head: branchName,
-    base: 'master'
-  })
+//   let createdPr = await octokit.pulls.create({
+//     owner,
+//     repo,
+//     title: prTitle,
+//     head: branchName,
+//     base: 'master'
+//   })
 
   await new Promise(resolve => setTimeout(resolve, 500))
 
-  //res.setHeader('Location', `https://github.com/${REPOSITORY}/tree/${branchName}`)
-  res.setHeader('Location', createdPr.data.html_url)
+  res.setHeader('Location', `https://github.com/${REPOSITORY}/tree/${branchName}`)
+//   res.setHeader('Location', createdPr.data.html_url)
   res.status(302).send('')
 }
