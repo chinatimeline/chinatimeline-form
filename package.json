@@ -1,6 +1,5 @@
 {
   "name": "chinatimeline-form",
-  "type": "module",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
