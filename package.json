@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/duty-machine/chinatimeline-form.git"
+    "url": "git+https://github.com/chinatimeline/chinatimeline-form.git"
   },
   "author": "",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/duty-machine/chinatimeline-form/issues"
+    "url": "https://github.com/chinatimeline/chinatimeline-form/issues"
   },
-  "homepage": "https://github.com/duty-machine/chinatimeline-form#readme",
+  "homepage": "https://github.com/chinatimeline/chinatimeline-form#readme",
   "dependencies": {
     "@octokit/rest": "^18.0.0",
     "uuid": "^8.2.0",
