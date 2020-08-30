@@ -31,7 +31,7 @@ module.exports = async (req, res) => {
 
   let masterSha = masterRef.data.object.sha
 
-  let branchName = 'master'
+  let branchName = `tmp${+ new Date()}`
   await octokit.git.createRef({ owner, repo, ref: `refs/heads/${branchName}`, sha: masterSha})
 
   let ymlFilename = `${data.date}-entry${data.submitTime}.yml`
@@ -55,13 +55,19 @@ module.exports = async (req, res) => {
     content: base64
   })
 
-//   let createdPr = await octokit.pulls.create({
-//     owner,
-//     repo,
-//     title: prTitle,
-//     head: branchName,
-//     base: 'master'
-//   })
+  let createdPr = await octokit.pulls.create({
+    owner,
+    repo,
+    title: prTitle,
+    head: branchName,
+    base: 'master'
+  })
+
+  await octokit.pulls.merge({
+    owner,
+    repo,
+    createdPr.number,
+  })
 
   await new Promise(resolve => setTimeout(resolve, 500))
 
