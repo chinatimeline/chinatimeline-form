@@ -66,7 +66,7 @@ module.exports = async (req, res) => {
   await octokit.pulls.merge({
     owner,
     repo,
-    createdPr.number,
+    pull_number: createdPr.number,
   })
 
   await new Promise(resolve => setTimeout(resolve, 500))
