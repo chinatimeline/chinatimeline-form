@@ -31,7 +31,7 @@ module.exports = async (req, res) => {
 
   let masterSha = masterRef.data.object.sha
 
-  let branchName = 'master' #`tmp${+ new Date()}`
+  let branchName = 'master'
   await octokit.git.createRef({ owner, repo, ref: `refs/heads/${branchName}`, sha: masterSha})
 
   let ymlFilename = `${data.date}-entry${data.submitTime}.yml`
