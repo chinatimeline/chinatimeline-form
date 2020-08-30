@@ -1,6 +1,5 @@
 {
   "name": "chinatimeline-form",
-  "type": "module",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -19,7 +18,6 @@
   "homepage": "https://github.com/chinatimeline/chinatimeline-form#readme",
   "dependencies": {
     "@octokit/rest": "^18.0.0",
-    "esm": "^3.2.25",
     "uuid": "^8.2.0",
     "yaml": "^1.10.0"
   }

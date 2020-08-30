@@ -1,6 +1,6 @@
-import { Octokit } from '@octokit/rest'
-import YAML from 'yaml'
-import { v4 as uuidv4 } from 'uuid'
+const { Octokit } = require("@octokit/rest");
+const YAML = require('yaml');
+const { v4 as uuidv4 } = require('uuid');
 
 let TOKEN = process.env.TOKEN
 let REPOSITORY = process.env.REPOSITORY
