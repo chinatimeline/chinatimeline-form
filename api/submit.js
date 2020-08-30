@@ -1,6 +1,6 @@
 const { Octokit } = require("@octokit/rest");
 const YAML = require('yaml');
-const uuidv4 = require('uuidv4');
+const { v4: uuidv4 } = require('uuid');
 
 let TOKEN = process.env.TOKEN
 let REPOSITORY = process.env.REPOSITORY
