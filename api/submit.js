@@ -63,6 +63,8 @@ module.exports = async (req, res) => {
     base: 'master'
   })
 
+  await new Promise(resolve => setTimeout(resolve, 1000))
+
   await octokit.pulls.merge({
     owner,
     repo,
