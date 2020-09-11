@@ -36,7 +36,7 @@ module.exports = async (req, res) => {
 
   let ymlFilename = `${data.date}-entry${data.submitTime}.yml`
 
-  let buffer = new Buffer.from(YAML.stringify(data))
+  let buffer = Buffer.from(YAML.stringify(data))
   let base64 = buffer.toString('base64')
 
   let committer = {
