@@ -40,6 +40,7 @@ module.exports = async (req, res) => {
 
   let prTitle = `添加新闻事件-${data.topic}-${data.title}`
   let path = `_data/comments/${ymlFilename}`
+  let branchName = 'master'
 
   await addFileToGit(path, content, prTitle)
 
