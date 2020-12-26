@@ -42,18 +42,17 @@ module.exports = async (req, res) => {
   })
 
 
+  let ymlFilename = `${data.date}-entry${data.submitTime}.yml`
+
+  let buffer = Buffer.from(YAML.stringify(data))
+  let content = buffer.toString('utf-8')
+
+  let prTitle = `添加新闻事件-${data.topic}-${data.title}`
+  let path = `_data/comments/${ymlFilename}`
+  let branchName = 'master'
+
   if(sanity){
-    let ymlFilename = `${data.date}-entry${data.submitTime}.yml`
-
-    let buffer = Buffer.from(YAML.stringify(data))
-    let content = buffer.toString('utf-8')
-
-    let prTitle = `添加新闻事件-${data.topic}-${data.title}`
-    let path = `_data/comments/${ymlFilename}`
-    let branchName = 'master'
-
     await addFileToGit(path, content, prTitle)
-
   }
   await new Promise(resolve => setTimeout(resolve, 500))
 
