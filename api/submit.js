@@ -36,10 +36,12 @@ module.exports = async (req, res) => {
   sanity = true
   musthave = ['topic','date','title','significance','event','url','type']
   musthave.map(item =>{
-    if (isEmpty(data['item'])){
+    if (isEmpty(data[item])){
       sanity = sanity && false
     }
   })
+
+  console.log(sanity)
 
 
   let ymlFilename = `${data.date}-entry${data.submitTime}.yml`
