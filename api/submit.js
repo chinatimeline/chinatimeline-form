@@ -33,18 +33,29 @@ module.exports = async (req, res) => {
     submitTime: +new Date()
   }
 
-  let ymlFilename = `${data.date}-entry${data.submitTime}.yml`
+  sanity = true
+  musthave = ['topic','date','title','significance','event','url','type']
+  musthave.map(item =>{
+    if (isEmpty(data['item'])){
+      sanity = sanity && false
+    }
+  })
 
-  let buffer = Buffer.from(YAML.stringify(data))
-  let content = buffer.toString('utf-8')
 
-  let prTitle = `添加新闻事件-${data.topic}-${data.title}`
-  let path = `_data/comments/${ymlFilename}`
-  let branchName = 'master'
+  if(sanity){
+    let ymlFilename = `${data.date}-entry${data.submitTime}.yml`
 
-  await addFileToGit(path, content, prTitle)
+    let buffer = Buffer.from(YAML.stringify(data))
+    let content = buffer.toString('utf-8')
 
-  await new Promise(resolve => setTimeout(resolve, 500))
+    let prTitle = `添加新闻事件-${data.topic}-${data.title}`
+    let path = `_data/comments/${ymlFilename}`
+    let branchName = 'master'
+
+    await addFileToGit(path, content, prTitle)
+
+    await new Promise(resolve => setTimeout(resolve, 500))
+  }
 
   res.setHeader('Location', `https://github.com/${REPOSITORY}/tree/${branchName}`)
 //   res.setHeader('Location', createdPr.data.html_url)
@@ -99,4 +110,8 @@ async function addFileToGit(path, content, message) {
   });
 
   console.log({sha_latest_commit, updated_ref: updated_ref.sha});
+}
+
+function isEmpty(str) {
+    return (!str || 0 === str.length || !str.trim());
 }
