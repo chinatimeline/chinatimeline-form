@@ -54,8 +54,8 @@ module.exports = async (req, res) => {
 
     await addFileToGit(path, content, prTitle)
 
-    await new Promise(resolve => setTimeout(resolve, 500))
   }
+  await new Promise(resolve => setTimeout(resolve, 500))
 
   res.setHeader('Location', `https://github.com/${REPOSITORY}/tree/${branchName}`)
 //   res.setHeader('Location', createdPr.data.html_url)
