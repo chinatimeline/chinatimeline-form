@@ -19,6 +19,6 @@
   "dependencies": {
     "@octokit/rest": "^18.0.5",
     "uuid": "^8.2.0",
-    "yaml": "^1.10.0"
+    "yaml": "^2.2.2"
   }
 }
